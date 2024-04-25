@@ -6,7 +6,7 @@ module.exports.config = {
   name: "remini",
   version: "1.0.0",
   hasPermission: 0,
-  credits: "Eugene Aguilar",
+  credits: "𝖢𝗂𝖼𝗂",
   description: "Enhance image using Remini API",
   commandCategory: "tools",
   usages: "[ reply a photo ]",
@@ -31,7 +31,7 @@ module.exports.run = async function ({ api, event, args }) {
 
     fs.writeFileSync(photoPath, Buffer.from(img), 'binary');
 
-    api.sendMessage({ body: "✨ Enhance successfully", attachment: fs.createReadStream(photoPath) }, event.threadID, event.messageID);
+    api.sendMessage({ body: "✨ 𝖢𝗂𝖼𝗂 Enhance successfully", attachment: fs.createReadStream(photoPath) }, event.threadID, event.messageID);
   } catch (error) {
     console.error("Error calling Remini API:", error);
     api.sendMessage(`An error occurred while processing the image. Please try again later.\n${error}`, event.threadID, event.messageID);
