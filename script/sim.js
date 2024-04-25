@@ -1,30 +1,39 @@
-const axios = require("axios");
-
 module.exports.config = {
-	name: "teach",
-	version: "1",
-	role: 0,
-	credits: "Cici",
-	hasPrefix: false,
-	description: "Teach Simsimi",
-	usage: "Teach",
-	cooldown: 0
+		name: "sim",
+		version: "1.0.0",
+		role: 0,
+		aliases: ["Sim"],
+		credits: "Cici",
+		description: "Talk to sim",
+		cooldown: 0,
+		hasPrefix: false
 };
 
-module.exports.run = async ({ api, event, args, prefix }) => {
-	try {
-		const text = args.join(" ");
-		const text1 = text.substr(0, text.indexOf(' => '));
-		const text2 = text.split(" => ").pop();
-
-		if (!text1 || !text2) {
-			return api.sendMessage(`Usage: ${prefix}teach hi => hello`, event.threadID, event.messageID);
+module.exports.run = async function({ api, event, args }) {
+		const axios = require("axios");
+		let { messageID, threadID, senderID, body } = event;
+		let tid = threadID,
+				mid = messageID;
+		const content = encodeURIComponent(args.join(" "));
+		if (!args[0]) return api.sendMessage("Please type a message...", tid, mid);
+		try {
+				const res = await axios.get(`https://sim-api-ctqz.onrender.com/sim?query=${content}`);
+				const respond = res.data.respond;
+				if (res.data.error) {
+						api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {
+								if (error) {
+										console.error(error);
+								}
+						}, mid);
+				} else {
+						api.sendMessage(respond, tid, (error, info) => {
+								if (error) {
+										console.error(error);
+								}
+						}, mid);
+				}
+		} catch (error) {
+				console.error(error);
+				api.sendMessage("An error occurred while fetching the data.", tid, mid);
 		}
-
-		const response = await axios.get(`https://sim-api-ctqz.onrender.com/teach?ask=${encodeURIComponent(text1)}&ans=${encodeURIComponent(text2)}`);
-		api.sendMessage(`Your ask: ${text1}\nSim respond: ${text2}\nSuccesfull teach`, event.threadID, event.messageID);
-	} catch (error) {
-		console.error("An error occurred:", error);
-		api.sendMessage("Please provide both a question and an answer\nExample: Teach hi => hello", event.threadID, event.messageID);
-	}
 };
