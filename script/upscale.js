@@ -5,7 +5,7 @@ module.exports.config = {
   name: "Upscale",
   version: "4.4",
   hasPermssion: 0,
-  credits: "Hazeyy",
+  credits: "𝖢𝗂𝖼𝗂",
   description: "( 𝚄𝚙𝚜𝚌𝚊𝚕𝚎 )",
   commandCategory: "𝚗𝚘 𝚙𝚛𝚎𝚏𝚒𝚡",
   usages: "( 𝚂𝚌𝚊𝚕𝚒𝚗𝚐 𝙸𝚖𝚊𝚐𝚎𝚜 )",
@@ -27,7 +27,7 @@ module.exports.handleEvent = async function ({ api, event }) {
     return;
   }
 
-  api.sendMessage("🕟 | 𝚄𝚙𝚜𝚌𝚊𝚕𝚒𝚗𝚐 𝙸𝚖𝚊𝚐𝚎, 𝙿𝚕𝚎𝚊𝚜𝚎 𝚠𝚊𝚒𝚝 𝚏𝚘𝚛 𝚊 𝚖𝚘𝚖𝚎𝚗𝚝..", threadID, async () => {
+  api.sendMessage("🕟 | 𝘜𝘱𝘴𝘤𝘢𝘭𝘪𝘯𝘨 𝘐𝘮𝘢𝘨𝘦, 𝘗𝘭𝘦𝘢𝘴𝘦 𝘸𝘢𝘪𝘵 𝘧𝘰𝘳 𝘢 𝘮𝘰𝘮𝘦𝘯𝘵..", threadID, async () => {
     try {
       const response = await axios.get(`https://hazee-upscale.replit.app/upscale?url=${encodeURIComponent(photoUrl)}&face_enhance=true`);
       const processedImageURL = response.data.hazescale;
@@ -36,7 +36,7 @@ module.exports.handleEvent = async function ({ api, event }) {
       fs.writeFileSync(pathie, Buffer.from(img, 'binary'));
 
       api.sendMessage({
-        body: "🔮 𝚄𝚙𝚜𝚌𝚊𝚕𝚎 𝚂𝚞𝚌𝚌𝚎𝚜𝚜𝚏𝚞𝚕𝚕𝚢",
+        body: "🔮 𝘜𝘱𝘴𝘤𝘢𝘭𝘦 𝘴𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺",
         attachment: fs.createReadStream(pathie)
       }, threadID, () => fs.unlinkSync(pathie), messageID);
     } catch (error) {
