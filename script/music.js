@@ -20,11 +20,11 @@ module.exports.run = async function({
   const yts = require("yt-search");
   const musicName = args.join(' ');
   if (!musicName) {
-    api.sendMessage(`To get started, type music and the title of the song you want.`, event.threadID, event.messageID);
+    api.sendMessage(`Opss!! to get started music, please provide title song`, event.threadID, event.messageID);
     return;
   }
   try {
-    api.sendMessage(`Searching for "${musicName}"...`, event.threadID, event.messageID);
+    api.sendMessage(`Searching for "${musicName}" kindly wait a moment...`, event.threadID, event.messageID);
     const searchResults = await yts(musicName);
     if (!searchResults.videos.length) {
       return api.sendMessage("Can't find the search.", event.threadID, event.messageID);
