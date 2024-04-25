@@ -42,7 +42,7 @@ module.exports.handleEvent = async function ({ api, event }) {
 
   try {
     const response = await axios.get(`https://hazee-social-downloader-9080f854bdab.herokuapp.com/pinterest?search=${search}`);
-    api.sendMessage('🕟 | 𝚂𝚎𝚊𝚛𝚌𝚑𝚒𝚗𝚐 𝚘𝚗 𝙿𝚒𝚗𝚝𝚎𝚛𝚎𝚜𝚝, 𝙿𝚕𝚎𝚊𝚜𝚎 𝚠𝚊𝚒𝚝...', event.threadID, event.messageID);
+    api.sendMessage('🕟 | 𝖲𝖾𝖺𝗋𝖼𝗁𝗂𝗇𝗀 𝗈𝗇 𝖯𝗂𝗇𝗍𝖾𝗋𝖾𝗌𝗍, 𝖯𝗅𝖾𝖺𝗌𝖾 𝗐𝖺𝗂𝗍...', event.threadID, event.messageID);
 
     const data = response.data;
     if (data.error) {
@@ -58,7 +58,7 @@ module.exports.handleEvent = async function ({ api, event }) {
         storedPath.push(path);
         attachment.push(fs.createReadStream(path))
       }
-      api.sendMessage({ body: `🤖 𝐏𝐢𝐧𝐭𝐞𝐫𝐞𝐬𝐭 ( 𝐀𝐈 )\n\n🖋️ 𝐒𝐞𝐚𝐫𝐜𝐡: '${search}'\n\n» 𝙽𝚞𝚖𝚋𝚎𝚛: ${attachment.length} - ${data.count} «`, attachment: attachment }, event.threadID, () => {
+      api.sendMessage({ body: `🤖 𝖯𝗂𝗇𝗍𝖾𝗋𝖾𝗌𝗍 ( 𝖠𝖨 )\n\n🖋️ 𝖲𝖾𝖺𝗋𝖼𝗁: '${search}'\n\n» 𝙽𝚞𝚖𝚋𝚎𝚛: ${attachment.length} - ${data.count} «`, attachment: attachment }, event.threadID, () => {
         for (const item of storedPath) {
           fs.unlinkSync(item)
         }
