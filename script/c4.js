@@ -23,7 +23,7 @@ function formatFont(text) {
 }
 
 module.exports.config = {
-  name: "c4",
+  name: "meta3",
   version: "4.7",
   hasPermssion: 0,
   credits: "Hazeyy",
